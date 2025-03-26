@@ -18,6 +18,7 @@ in {
   ];
   environment.systemPackages = (with pkgs; [
     # System Packages
+    bc
     vscode
     rclone
     #lenovo-legion
@@ -87,7 +88,7 @@ in {
     brightnessctl # for brightness control
     cava
     cliphist
-    loup
+    loupe
     gnome-system-monitor
     grim
     gtk-engine-murrine # for gtk themes

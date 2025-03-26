@@ -4,11 +4,12 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-24.11";
-    #nixpkgs.url = "nixpkgs/nixos-unstable";
-    
-    hyprland.url = "github:hyprwm/Hyprland"; # hyprland development
-    #distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
+  	#nixpkgs.url = "nixpkgs/nixos-unstable";
+	
+    # hyprland.url = "github:hyprwm/Hyprland"; # hyprland development
+    distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
     ags.url = "github:aylur/ags/v1"; # aylurs-gtk-shell-v1
+    nvf.url = "github:notashelf/nvf";
   };
 
   outputs = inputs @ {
