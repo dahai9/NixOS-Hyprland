@@ -19,7 +19,7 @@ in {
 
   # BOOT related stuff
   boot = {
-    kernelPackages = pkgs.linuxKernel.packages.linux_6_12; # Kernel
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen; # Kernel
 
     kernelParams = [
       "systemd.mask=systemd-vconsole-setup.service"
@@ -30,7 +30,7 @@ in {
     ];
 
     # This is for OBS Virtual Cam Support
-    kernelModules = [ "v4l2loopback" "fuse" ];
+    kernelModules = [ "v4l2loopback" "fuse" "mt76" ];
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
 
     initrd = {
@@ -153,11 +153,12 @@ in {
   nixpkgs.config.allowUnfree = true;
   programs.wireshark.enable = true;
   programs = {
-    hyprland = {
+	  hyprland = {
       enable = true;
-      #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; #hyprland-git
-      portalPackage = pkgs.xdg-desktop-portal-hyprland;
-      xwayland.enable = true;
+     	package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; #hyprland-git
+		  portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland; #xdph-git
+     	#portalPackage = pkgs.xdg-desktop-portal-hyprland; # xdph none git
+  	  xwayland.enable = true;
     };
 
     nvf = {
@@ -292,7 +293,7 @@ in {
       wireplumber.enable = true;
     };
 
-    pulseaudio.enable = false; # unstable
+    #pulseaudio.enable = false; # unstable
     udev={
       enable = true;
   #add battery conservation permisson to users,this is for Lenovo laptops
@@ -397,7 +398,7 @@ in {
   };
 
   # Enable sound with pipewire.
-  # hardware.pulseaudio.enable = false; # replaced with services.pulseaudio 04-Jan-2025
+  hardware.pulseaudio.enable = false; # replaced with services.pulseaudio 04-Jan-2025
 
   # Security / Polkit
   security.rtkit.enable = true;

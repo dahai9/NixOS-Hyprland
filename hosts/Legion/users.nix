@@ -28,7 +28,7 @@ in
     # define user packages here
     packages = with pkgs; [
       
-        kdePackages.kate
+       #kdePackages.kate
     #  thunderbird
         wechat-uos
         qq
@@ -41,7 +41,7 @@ in
   }; 
   
   environment.shells = with pkgs; [ zsh ];
-  environment.systemPackages = with pkgs; [ fzf ]; 
+  environment.systemPackages = with pkgs; [ lsd fzf ]; 
     
   programs = {
   # Zsh configuration
@@ -51,7 +51,7 @@ in
       ohMyZsh = {
         enable = true;
         plugins = ["git"];
-        theme = "xiong-chiamiov-plus"; 
+        theme = "agnoster"; 
       	};
       
       autosuggestions.enable = true;
@@ -62,6 +62,13 @@ in
         
         #pokemon colorscripts like. Make sure to install krabby package
         #krabby random --no-mega --no-gmax --no-regional --no-title -s; 
+
+        # Set-up icons for files/folders in terminal using lsd
+        alias ls='lsd'
+        alias l='ls -l'
+        alias la='ls -a'
+        alias lla='ls -la'
+        alias lt='ls --tree'
         
         source <(fzf --zsh);
         HISTFILE=~/.zsh_history;

@@ -14,7 +14,7 @@ in {
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
     # Add any missing dynamic libraries for unpackaged programs
-    # here, NOT in environment.systemPackages
+    # here, NOT in environment.systemPackages   QYKw9umtV2HVDDZ5qnF8DuSxcuvR
   ];
   environment.systemPackages = (with pkgs; [
     # System Packages
@@ -26,11 +26,16 @@ in {
     #pdf reader
     kdePackages.okular
     
+    iw
+    zip
+    android-tools
+    nodejs_23
     yazi
     filezilla
     rar
     termius
     gnumake
+    telegram-desktop
     pkg-config
     minicom
     usbutils
@@ -38,6 +43,7 @@ in {
     micromamba
     cmake
     gcc
+    gdb
     readline
     ncurses
     libffi
@@ -53,7 +59,6 @@ in {
     curl
     cpufrequtils
     duf
-    eza
     ffmpeg
     glib # for gsettings to work
     gsettings-qt
@@ -73,16 +78,16 @@ in {
     #ranger
 
     # Hyprland Stuff
-    (ags.overrideAttrs (oldAttrs: {
-      inherit (oldAttrs) pname;
-      version = "1.8.2";
-    }))
-    #ags    
+    # (ags.overrideAttrs (oldAttrs: {
+    #   inherit (oldAttrs) pname;
+    #   version = "1.8.2";
+    # }))
+    ags    
     btop
     brightnessctl # for brightness control
     cava
     cliphist
-    eog
+    loup
     gnome-system-monitor
     grim
     gtk-engine-murrine # for gtk themes
@@ -94,13 +99,14 @@ in {
     kitty
     libsForQt5.qtstyleplugin-kvantum # kvantum
     networkmanagerapplet
+    nwg-displays
     nwg-look # requires unstable channel
     nvtopPackages.panthor
     pamixer
     pavucontrol
     playerctl
     polkit_gnome
-    pyprland
+    #pyprland
     libsForQt5.qt5ct
     kdePackages.qt6ct
     kdePackages.qtwayland
@@ -131,8 +137,11 @@ in {
     jetbrains-mono
     font-awesome
     terminus_font
-    #(nerdfonts.override {fonts = ["JetBrainsMono"];}) # stable banch
-    nerd-fonts.jetbrains-mono # unstable
-    nerd-fonts.fira-code # unstable
+    victor-mono
+    (nerdfonts.override {fonts = ["JetBrainsMono"];}) # stable banch
+    (nerdfonts.override {fonts = ["FantasqueSansMono"];}) # stable banch
+    #nerd-fonts.jetbrains-mono # unstable 
+    #nerd-fonts.fira-code # unstable
+    #nerd-fonts.fantasque-sans-mono #unstable
   ];
 }
