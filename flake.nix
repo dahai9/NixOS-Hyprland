@@ -4,7 +4,8 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-24.11";
-  	#nixpkgs.url = "nixpkgs/nixos-unstable";
+  	nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+
 	
     # hyprland.url = "github:hyprwm/Hyprland"; # hyprland development
     distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
@@ -25,7 +26,14 @@
     pkgs = import nixpkgs {
       inherit system;
       config = {
-        alalowUnfree = true;
+        allowUnfree = true;
+      };
+    };
+    unstable-pkgs = import inputs.nixpkgs-unstable {
+      inherit system;
+      config = {
+        allowUnfree = true;
+
       };
     };
   in {
@@ -36,6 +44,7 @@
           inherit inputs;
           inherit username;
           inherit host;
+          inherit unstable-pkgs;
         };
         modules = [
           ./hosts/${host}/config.nix

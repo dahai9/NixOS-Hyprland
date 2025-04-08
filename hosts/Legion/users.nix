@@ -1,7 +1,7 @@
 # 💫 https://github.com/JaKooLit 💫 #
 # Users - NOTE: Packages defined on this will be on current user only
 
-{ pkgs, username, ... }:
+{ pkgs, unstable-pkgs, username, ... }:
 
 let
   inherit (import ./variables.nix) gitUsername;
@@ -26,7 +26,7 @@ in
       ];
 
     # define user packages here
-    packages = with pkgs; [
+    packages = with unstable-pkgs; [
       
        #kdePackages.kate
     #  thunderbird

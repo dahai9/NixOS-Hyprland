@@ -1,7 +1,7 @@
 # 💫 https://github.com/JaKooLit 💫 #
 # Packages and Fonts config
 
-{ Mypkgs, pkgs, inputs, ... }:
+{ Mypkgs, pkgs, unstable-pkgs, inputs, ... }:
 let
   python-packages = pkgs.python3.withPackages (ps:
     with ps; [
@@ -9,8 +9,8 @@ let
       pyquery # needed for hyprland-dots Weather script
       pip
     ]);
-
 in {
+
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
     # Add any missing dynamic libraries for unpackaged programs
@@ -19,7 +19,7 @@ in {
   environment.systemPackages = (with pkgs; [
     # System Packages
     bc
-    vscode
+    
     rclone
     #lenovo-legion
     #rust toolchain
@@ -31,7 +31,7 @@ in {
     zip
     android-tools
     nodejs_23
-    yazi
+    #yazi
     filezilla
     rar
     termius
@@ -126,7 +126,13 @@ in {
 
     #waybar  # if wanted experimental next line
     #(pkgs.waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];}))
-  ]) ++ [ python-packages ];
+  ]) ++ [ 
+    python-packages 
+  ]++(with unstable-pkgs; [
+      yazi
+      vscode
+      
+  ]);
 
   # FONTS
   fonts.packages = with pkgs; [
