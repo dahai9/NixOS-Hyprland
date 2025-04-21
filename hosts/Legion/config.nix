@@ -328,12 +328,13 @@ in {
 
     gnome.gnome-keyring.enable = true;
 
-    #printing = {
-    #  enable = false;
-    #  drivers = [
-    # pkgs.hplipWithPlugin
-    #  ];
-    #};
+    printing = {
+     enable = true;
+     drivers = [
+    pkgs.hplipWithPlugin
+    pkgs.brlaser
+     ];
+    };
 
     #avahi = {
     #  enable = true;
