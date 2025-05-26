@@ -30,7 +30,7 @@ in {
     iw
     zip
     android-tools
-    nodejs_23
+    nodejs_26
     #yazi
     filezilla
     rar

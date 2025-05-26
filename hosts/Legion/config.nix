@@ -19,7 +19,7 @@ in {
 
   # BOOT related stuff
   boot = {
-    kernelPackages = pkgs.linuxKernel.packages.linux_zen; # Kernel
+    kernelPackages = pkgs.linuxKernel.packages.linux_6_12; # Kernel
 
     kernelParams = [
       "systemd.mask=systemd-vconsole-setup.service"
@@ -195,6 +195,7 @@ in {
             name = "gruvbox";
             style = "dark";
           };
+          
           languages = {
             enableLSP = true;
             nix.enable = true;
@@ -471,5 +472,5 @@ in {
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 }
