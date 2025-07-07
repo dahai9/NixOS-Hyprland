@@ -5,6 +5,7 @@ services.mihomo.enable = true;
 services.mihomo.configFile = "/home/dahai003/.config/mihomo/config.yaml";
 services.mihomo.tunMode = true;
 services.mihomo.webui = pkgs.metacubexd;
+#services.teamviewer.enable = true;
 systemd.services.mihomo = {
   wantedBy = lib.mkForce [];  # 禁用开机自启动
 };

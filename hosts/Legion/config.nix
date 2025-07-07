@@ -19,7 +19,7 @@ in {
 
   # BOOT related stuff
   boot = {
-    kernelPackages = pkgs.linuxKernel.packages.linux_6_12; # Kernel
+   # kernelPackages = pkgs.linuxKernel.packages.linux_6_12; # Kernel
 
     kernelParams = [
       "systemd.mask=systemd-vconsole-setup.service"
@@ -195,9 +195,9 @@ in {
             name = "gruvbox";
             style = "dark";
           };
-          
+          lsp.enable = true;
           languages = {
-            enableLSP = true;
+            
             nix.enable = true;
             rust.enable = true;
             enableTreesitter = true;
@@ -294,7 +294,7 @@ in {
       wireplumber.enable = true;
     };
 
-    #pulseaudio.enable = false; # unstable
+    pulseaudio.enable = false; # unstable
     udev={
       enable = true;
   #add battery conservation permisson to users,this is for Lenovo laptops
@@ -400,7 +400,7 @@ in {
   };
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false; # replaced with services.pulseaudio 04-Jan-2025
+  #hardware.pulseaudio.enable = false; # replaced with services.pulseaudio 04-Jan-2025
 
   # Security / Polkit
   security.rtkit.enable = true;

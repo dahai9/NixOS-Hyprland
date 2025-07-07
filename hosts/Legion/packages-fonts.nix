@@ -19,18 +19,19 @@ in {
   environment.systemPackages = (with pkgs; [
     # System Packages
     bc
-    
     rclone
+    nil
+    nixfmt-rfc-style
     #lenovo-legion
     #rust toolchain
     rustup
     #pdf reader
     kdePackages.okular
-    
+    jdk
     iw
     zip
     android-tools
-    nodejs_26
+    nodejs_24
     #yazi
     filezilla
     rar
@@ -123,7 +124,7 @@ in {
     wlogout
     #xarchiver
     yad
-
+    wireshark
     #waybar  # if wanted experimental next line
     #(pkgs.waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];}))
   ]) ++ [ 
@@ -131,7 +132,7 @@ in {
   ]++(with unstable-pkgs; [
       yazi
       vscode
-      
+      rustdesk-flutter
   ]);
 
   # FONTS
@@ -145,10 +146,10 @@ in {
     font-awesome
     terminus_font
     victor-mono
-    (nerdfonts.override {fonts = ["JetBrainsMono"];}) # stable banch
-    (nerdfonts.override {fonts = ["FantasqueSansMono"];}) # stable banch
-    #nerd-fonts.jetbrains-mono # unstable 
-    #nerd-fonts.fira-code # unstable
-    #nerd-fonts.fantasque-sans-mono #unstable
+    # (nerdfonts.override {fonts = ["JetBrainsMono"];}) # stable banch
+    # (nerdfonts.override {fonts = ["FantasqueSansMono"];}) # stable banch
+    nerd-fonts.jetbrains-mono      # 25.05 change 
+    nerd-fonts.fira-code           # 25.05 change
+    nerd-fonts.fantasque-sans-mono # 25.05 change
   ];
 }
