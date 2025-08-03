@@ -19,7 +19,7 @@ in {
 
   # BOOT related stuff
   boot = {
-   # kernelPackages = pkgs.linuxKernel.packages.linux_6_12; # Kernel
+    kernelPackages = pkgs.linuxKernel.packages.linux_zen; # Kernel
 
     kernelParams = [
       "systemd.mask=systemd-vconsole-setup.service"
@@ -392,7 +392,7 @@ in {
       settings = {
         General = {
           FastConnectable = true;
-          Enable = "Source,Sink,Media,Socket";
+          #Enable = "Source,Sink,Media,Socket";
           Experimental = true;
         };
       };

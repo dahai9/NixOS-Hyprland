@@ -22,6 +22,8 @@ in {
     rclone
     nil
     nixfmt-rfc-style
+    go
+    wpsoffice-cn
     #lenovo-legion
     #rust toolchain
     rustup
