@@ -37,8 +37,7 @@ in
 
         #kdePackages.kate
         #  thunderbird
-        wechat-uos
-        qq
+
         # mihomo-party
 
       ];

@@ -160,6 +160,8 @@ in
       yazi
       vscode
       codex
+      wechat
+      qq
     ]);
 
   # FONTS
