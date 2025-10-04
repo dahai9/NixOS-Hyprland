@@ -7,7 +7,7 @@ let
     with ps; [
       requests
       pyquery # needed for hyprland-dots Weather script
-      pip
+    
     ]);
 in {
 
@@ -15,6 +15,15 @@ in {
   programs.nix-ld.libraries = with pkgs; [
     # Add any missing dynamic libraries for unpackaged programs
     # here, NOT in environment.systemPackages   QYKw9umtV2HVDDZ5qnF8DuSxcuvR
+      openssl
+      curl
+      zlib
+      libssh2
+      nghttp2
+      pkg-config
+      libGL
+      glib
+      
   ];
   environment.systemPackages = (with pkgs; [
     # System Packages
@@ -24,9 +33,13 @@ in {
     nixfmt-rfc-style
     go
     wpsoffice-cn
+    qemu
+    docker
     #lenovo-legion
     #rust toolchain
     rustup
+    cudaPackages.cudatoolkit
+    
     #pdf reader
     kdePackages.okular
     jdk
@@ -71,6 +84,7 @@ in {
     libappindicator
     libnotify
     openssl # required by Rainbow borders
+    openssl.dev
     pciutils
     #vim
     wget
@@ -133,8 +147,8 @@ in {
     python-packages 
   ]++(with unstable-pkgs; [
       yazi
-      vscode
-      rustdesk-flutter
+      vscode-fhs
+      codex
   ]);
 
   # FONTS
