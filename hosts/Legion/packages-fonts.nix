@@ -48,7 +48,7 @@ in
       #rust toolchain
       rustup
       cudaPackages.cudatoolkit
-
+      gh
       #pdf reader
       kdePackages.okular
       jdk

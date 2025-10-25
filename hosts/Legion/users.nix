@@ -19,6 +19,7 @@ in
       isNormalUser = true;
       description = "${gitUsername}";
       extraGroups = [
+        "usbmux"
         "docker"
         "wireshark"
         "networkmanager"

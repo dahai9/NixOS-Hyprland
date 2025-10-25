@@ -1,9 +1,22 @@
 # 💫 https://github.com/JaKooLit 💫 #
 # Main default config
 # NOTE!!! : Packages and Fonts are configured in packages-&-fonts.nix
-{ config, pkgs,unstable-pkgs, host, username, options, lib, inputs, system, ... }:
-let inherit (import ./variables.nix) keyboardLayout;
-in {
+{
+  config,
+  pkgs,
+  unstable-pkgs,
+  host,
+  username,
+  options,
+  lib,
+  inputs,
+  system,
+  ...
+}:
+let
+  inherit (import ./variables.nix) keyboardLayout;
+in
+{
   imports = [
     ./hardware.nix
     ./users.nix
@@ -30,12 +43,22 @@ in {
     ];
 
     # This is for OBS Virtual Cam Support
-    kernelModules = [ "v4l2loopback" "fuse" "mt76" ];
+    kernelModules = [
+      "v4l2loopback"
+      "fuse"
+      "mt76"
+    ];
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
 
     initrd = {
-      availableKernelModules =
-        [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
+      availableKernelModules = [
+        "xhci_pci"
+        "ahci"
+        "nvme"
+        "usb_storage"
+        "usbhid"
+        "sd_mod"
+      ];
       kernelModules = [ ];
     };
 
@@ -110,13 +133,12 @@ in {
   # networking
   networking.networkmanager.enable = true;
   networking.hostName = "${host}";
-  networking.timeServers = options.networking.timeServers.default
-    ++ [ "pool.ntp.org" ];
+  networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
   networking.nameservers = [ "1.0.0.1" ];
 
   services.resolved = {
     enable = true;
-    dnssec = "false"; #for mihomo work properly
+    dnssec = "false"; # for mihomo work properly
     #domains = [ "~." ];
     #fallbackDns = [ "1.1.1.1" "1.0.0.1" ];
     dnsovertls = "false";
@@ -153,12 +175,12 @@ in {
   nixpkgs.config.allowUnfree = true;
   programs.wireshark.enable = true;
   programs = {
-	  hyprland = {
+    hyprland = {
       enable = true;
-     	# package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; #hyprland-git
-		  # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland; #xdph-git
-     	portalPackage = pkgs.xdg-desktop-portal-hyprland; # xdph none git
-  	  xwayland.enable = true;
+      # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; #hyprland-git
+      # portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland; #xdph-git
+      portalPackage = pkgs.xdg-desktop-portal-hyprland; # xdph none git
+      xwayland.enable = true;
     };
 
     nvf = {
@@ -167,39 +189,41 @@ in {
       # most settings are documented in the appendix
       settings = {
         vim = {
-        keymaps = [
-            {     
-                key = "<C-c>";
-                mode = ["v"];
-                action = "\"+y";
-                silent = true;
-                desc = "copy";
+          keymaps = [
+            {
+              key = "<C-c>";
+              mode = [ "v" ];
+              action = "\"+y";
+              silent = true;
+              desc = "copy";
             }
             {
-                key = "<C-v>";
-                mode = ["i"];
-                action = "<Esc>\"+pa";
-                silent = true;
-                desc = "paste";
+              key = "<C-v>";
+              mode = [ "i" ];
+              action = "<Esc>\"+pa";
+              silent = true;
+              desc = "paste";
             }
             {
-                key = "<C-v>";
-                mode = ["n"];
-                action = "\"+p";
-                silent = true;
-                desc = "paste";
+              key = "<C-v>";
+              mode = [ "n" ];
+              action = "\"+p";
+              silent = true;
+              desc = "paste";
             }
-        ];
+          ];
           theme = {
             enable = true;
             name = "gruvbox";
             style = "dark";
           };
-          lsp.enable = true;
           languages = {
-            
+
             nix.enable = true;
-            rust.enable = true;
+            rust = {
+              enable = true;
+              lsp.enable = true;
+            };
             enableTreesitter = true;
           };
           autocomplete.nvim-cmp.enable = true;
@@ -246,14 +270,19 @@ in {
     };
   };
 
-  users = { mutableUsers = true; };
+  users = {
+    mutableUsers = true;
+  };
 
   # Extra Portal Configuration
   xdg.portal = {
     enable = true;
     wlr.enable = false;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    configPackages = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal ];
+    configPackages = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal
+    ];
   };
 
   # Services to start
@@ -272,8 +301,7 @@ in {
       settings = {
         default_session = {
           user = username;
-          command =
-            "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland"; # start Hyprland with a TUI login manager
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland"; # start Hyprland with a TUI login manager
         };
       };
     };
@@ -295,9 +323,9 @@ in {
     };
 
     pulseaudio.enable = false; # unstable
-    udev={
+    udev = {
       enable = true;
-  #add battery conservation permisson to users,this is for Lenovo laptops
+      #add battery conservation permisson to users,this is for Lenovo laptops
       extraRules = ''
         SUBSYSTEM=="devices", KERNEL=="pci0000:00/0000:00:14.3/PNP0C09:00/VPC2004:00/conservation_mode", MODE="0664", GROUP="users"
       '';
@@ -330,11 +358,11 @@ in {
     gnome.gnome-keyring.enable = true;
 
     printing = {
-     enable = true;
-     drivers = [
-    pkgs.hplipWithPlugin
-    pkgs.brlaser
-     ];
+      enable = true;
+      drivers = [
+        pkgs.hplipWithPlugin
+        pkgs.brlaser
+      ];
     };
 
     #avahi = {
@@ -431,7 +459,10 @@ in {
   nix = {
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       substituters = [ "https://hyprland.cachix.org" ];
       trusted-public-keys = [
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
@@ -454,7 +485,9 @@ in {
   };
 
   # OpenGL
-  hardware.graphics = { enable = true; };
+  hardware.graphics = {
+    enable = true;
+  };
 
   console.keyMap = "${keyboardLayout}";
 
