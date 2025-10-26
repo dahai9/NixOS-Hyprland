@@ -78,12 +78,9 @@
   #   };
   # };
 
-  # usbmuxd service cofig 
-  services.usbmuxd={
+  # usbmuxd service cofig
+  services.usbmuxd = {
     enable = true;
-    group=[
-      "usbmux"
-      "docker"
-    ]
-  }
+  };
+  users.users.usbmux.extraGroups = [ "docker" ];
 }

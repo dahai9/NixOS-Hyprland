@@ -162,6 +162,7 @@ in
       codex
       wechat
       qq
+      baidupcs-go
     ]);
 
   # FONTS

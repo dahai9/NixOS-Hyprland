@@ -47,6 +47,7 @@ in
       "v4l2loopback"
       "fuse"
       "mt76"
+      "hid-playstation"
     ];
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
 
