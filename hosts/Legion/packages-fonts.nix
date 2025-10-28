@@ -49,6 +49,7 @@ in
       rustup
       cudaPackages.cudatoolkit
       gh
+      pgcli
       #pdf reader
       kdePackages.okular
       jdk
@@ -111,6 +112,7 @@ in
       # }))
       ags
       btop
+      inetutils
       brightnessctl # for brightness control
       cava
       cliphist
