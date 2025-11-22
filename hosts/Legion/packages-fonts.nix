@@ -50,6 +50,7 @@ in
       cudaPackages.cudatoolkit
       gh
       pgcli
+      ntfs3g
       #pdf reader
       kdePackages.okular
       jdk
@@ -152,15 +153,19 @@ in
       #xarchiver
       yad
       wireshark
+      obs-studio
+      protobuf
       #waybar  # if wanted experimental next line
       #(pkgs.waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];}))
+      #zsh theme
+      spaceship-prompt
     ])
     ++ [
       python-packages
     ]
     ++ (with unstable-pkgs; [
       yazi
-      vscode
+      vscode-fhs
       codex
       wechat
       qq

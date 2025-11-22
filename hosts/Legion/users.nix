@@ -61,7 +61,10 @@ in
       ohMyZsh = {
         enable = true;
         plugins = [ "git" ];
-        theme = "agnoster";
+        theme = "spaceship";
+        customPkgs = [
+          pkgs.spaceship-prompt
+        ];
       };
 
       autosuggestions.enable = true;
@@ -69,7 +72,9 @@ in
 
       promptInit = ''
         fastfetch -c $HOME/.config/fastfetch/config-compact.jsonc
-
+        #set spaceship ,the sysmbol is nix logo need jetbrain font 
+        SPACESHIP_ASYNC_SYMBOL="󱄅"
+        SPACESHIP_DIR_TRUNC=0
         #pokemon colorscripts like. Make sure to install krabby package
         #krabby random --no-mega --no-gmax --no-regional --no-title -s; 
 
